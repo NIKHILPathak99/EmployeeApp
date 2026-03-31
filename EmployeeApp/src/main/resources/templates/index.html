@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        * { box-sizing: border-box; margin:0; padding:0; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {opacity:0; transform: translateY(-20px);}
+            to {opacity:1; transform: translateY(0);}
+        }
+        .error {
+    background: #ffe6e6;
+    color: #d8000c;
+    border: 1px solid #ffb3b3;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 500;
+    animation: shake 0.3s ease-in-out;
+}
+
+/* thoda attention ke liye animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+        h2 { text-align:center; margin-bottom:30px; color:#333; font-weight:700; }
+
+        form div { margin-bottom:20px; }
+
+        label { display:block; margin-bottom:6px; font-weight:500; color:#555; }
+
+        input[type="text"], input[type="password"] {
+            width:100%;
+            padding:12px 15px;
+            border-radius:10px;
+            border:1px solid #ccc;
+            font-size:14px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #2575fc;
+            box-shadow:0 0 8px rgba(37,117,252,0.3);
+            outline:none;
+        }
+
+        button {
+            width:100%;
+            padding:12px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color:white;
+            font-size:16px;
+            font-weight:600;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+
+        p { text-align:center; color:#555; font-size:14px; }
+
+        a { color:#6a11cb; text-decoration:none; font-weight:500; }
+        a:hover { text-decoration:underline; }
+
+        .error { color:red; text-align:center; font-weight:500; }
+
+        @media (max-width:480px){
+            .container { padding:30px 20px; width:90%; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+
+		<form th:action="@{/login}"  method="post">
+        <div>
+            <label>Username:</label>
+           <!--  <input type="text" th:field="*{username}" placeholder="Enter username"/> -->
+            <input type="text" name="empMail"  placeholder="Enter username"/>
+        </div>
+        <div>
+            <label>Password:</label>
+           <!--  <input type="password" th:field="*{password}" placeholder="Enter password"/> -->
+            <input type="password" name ="password" placeholder="Enter password"/>
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+        <div th:if="${error}" class="error">
+            <p th:text="${error}"></p>
+        </div>
+    </form>
+    <p>Don't have an account? <a th:href="@{/signuppage}">Sign up</a></p>
+</div>
+</body>
+</html>
